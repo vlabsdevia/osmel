@@ -1,0 +1,13 @@
+{
+  "name": "osmel-site",
+  "version": "1.0.0",
+  "description": "Osmel Martinez PCs and parts site, fed from Facebook Marketplace",
+  "scripts": {
+    "sync": "node tools/sync.mjs",
+    "preview": "python3 -m http.server 8802"
+  },
+  "type": "commonjs",
+  "devDependencies": {
+    "playwright": "^1.64.1"
+  }
+}

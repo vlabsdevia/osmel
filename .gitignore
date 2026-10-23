@@ -1,2 +1,4 @@
 .DS_Store
 hello-world-html/
+node_modules/
+.fb-session/

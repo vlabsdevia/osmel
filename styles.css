@@ -1,0 +1,240 @@
+/* Osmel Martinez, PCs and parts.
+   Palette: graphite case interior, with the RGB glow coming from his own build photos. */
+:root {
+  --case: #191b24;
+  --panel: #232634;
+  --line: #343849;
+  --text: #eceef3;
+  --muted: #a0a6b6;
+  --cyan: #43d3ff;
+  --magenta: #d65bff;
+  --amber: #ffc45e;
+
+  --narrow: 'Archivo', system-ui, sans-serif;
+  --step--1: 0.875rem;
+  --step-0: 1rem;
+  --step-1: 1.25rem;
+  --step-2: 1.6rem;
+  --step-3: clamp(2.2rem, 1.4rem + 3.2vw, 4.2rem);
+  --gutter: clamp(1rem, 4vw, 3rem);
+  --max: 1280px;
+}
+
+*, *::before, *::after { box-sizing: border-box; }
+html { color-scheme: dark; }
+body {
+  margin: 0;
+  background: var(--case);
+  color: var(--text);
+  font-family: var(--narrow);
+  font-size: var(--step-0);
+  line-height: 1.5;
+  font-variation-settings: 'wdth' 100;
+  -webkit-font-smoothing: antialiased;
+}
+img { display: block; max-width: 100%; }
+a { color: inherit; }
+button, input, select { font: inherit; color: inherit; }
+:focus-visible { outline: 2px solid var(--cyan); outline-offset: 3px; border-radius: 4px; }
+
+.sr-only {
+  position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px;
+  overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; border: 0;
+}
+.skip { position: absolute; left: -999px; top: 0; padding: .6rem 1rem; background: var(--text); color: var(--case); z-index: 10; }
+.skip:focus { left: 1rem; }
+
+/* ---------- header ---------- */
+.top {
+  max-width: var(--max); margin: 0 auto; padding: 1.25rem var(--gutter);
+  display: flex; align-items: center; justify-content: space-between; gap: 1rem; flex-wrap: wrap;
+}
+.brand { text-decoration: none; display: grid; line-height: 1.15; }
+.brand-name { font-size: var(--step-1); font-weight: 800; font-variation-settings: 'wdth' 118; letter-spacing: -0.01em; }
+.brand-sub { font-size: var(--step--1); color: var(--muted); font-variation-settings: 'wdth' 80; }
+.top-right { display: flex; align-items: center; gap: 1.25rem; flex-wrap: wrap; }
+.rating { margin: 0; font-size: var(--step--1); color: var(--muted); }
+.stars { color: var(--amber); }
+
+/* ---------- buttons ---------- */
+.btn {
+  display: inline-flex; align-items: center; justify-content: center;
+  min-height: 44px; padding: 0 1.1rem; border-radius: 8px;
+  font-weight: 650; font-size: var(--step--1); text-decoration: none; cursor: pointer;
+  border: 1px solid transparent; transition: background-color .15s, border-color .15s;
+}
+.btn-main { background: var(--text); color: var(--case); }
+.btn-main:hover { background: #fff; }
+.btn-quiet { background: transparent; border-color: var(--line); }
+.btn-quiet:hover { border-color: var(--muted); }
+
+/* ---------- intro ---------- */
+main { max-width: var(--max); margin: 0 auto; padding: 0 var(--gutter); }
+.intro { padding: clamp(2rem, 6vw, 5rem) 0 clamp(1.5rem, 4vw, 3rem); }
+h1 {
+  margin: 0; max-width: 16ch;
+  font-size: var(--step-3); line-height: 1; font-weight: 850;
+  font-variation-settings: 'wdth' 112; letter-spacing: -0.025em;
+  text-wrap: balance;
+}
+.lede { margin: 1.25rem 0 0; max-width: 58ch; color: var(--muted); font-size: var(--step-1); line-height: 1.45; }
+
+.section-title {
+  margin: 0 0 1.25rem; font-size: var(--step-2); font-weight: 800;
+  font-variation-settings: 'wdth' 112; letter-spacing: -0.015em;
+}
+
+/* ---------- builds: the one loud thing ---------- */
+.builds { padding: 1rem 0 3rem; }
+.build-list { display: grid; gap: clamp(2.5rem, 6vw, 4.5rem); }
+.build {
+  position: relative; isolation: isolate;
+  display: grid; grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); gap: clamp(1.5rem, 4vw, 3.5rem);
+  align-items: center;
+}
+/* the build's own photo, blurred, spills light onto the page like the PC is on */
+.build::before {
+  content: ''; position: absolute; z-index: -1;
+  inset: 4% auto 4% -2%; width: 48%;
+  background: var(--glow) center / cover;
+  filter: blur(70px) saturate(1.8);
+  opacity: .75;
+  animation: power-on 1.6s ease-out both;
+}
+@keyframes power-on {
+  0% { opacity: 0; transform: scale(.9); }
+  35% { opacity: .95; }
+  100% { opacity: .75; transform: scale(1); }
+}
+.build-photo { border-radius: 14px; overflow: hidden; aspect-ratio: 3 / 4; background: #000; }
+.build-photo img { width: 100%; height: 100%; object-fit: cover; }
+.build-info h3 {
+  margin: 0; font-size: clamp(1.6rem, 1.1rem + 2vw, 2.6rem); line-height: 1.05; font-weight: 800;
+  font-variation-settings: 'wdth' 108; letter-spacing: -0.02em; text-wrap: balance;
+}
+.build-info .price { margin: .75rem 0 0; font-size: var(--step-2); }
+.build-info .condition { margin: .15rem 0 0; color: var(--muted); }
+
+.specs {
+  margin: 1.5rem 0 0; display: grid; grid-template-columns: max-content 1fr;
+  column-gap: 1.25rem; border-top: 1px solid var(--line);
+}
+.specs dt, .specs dd { margin: 0; padding: .55rem 0; border-bottom: 1px solid var(--line); }
+.specs dt { color: var(--muted); font-size: var(--step--1); font-variation-settings: 'wdth' 72; font-weight: 600; padding-top: .7rem; }
+.specs dd { font-weight: 500; }
+.extras, .note { margin: 1rem 0 0; color: var(--muted); max-width: 60ch; }
+.actions { margin-top: 1.5rem; display: flex; gap: .75rem; flex-wrap: wrap; }
+
+/* ---------- prices ---------- */
+.price { display: flex; align-items: baseline; gap: .5rem; margin: 0; }
+.price .now { font-weight: 800; font-variation-settings: 'wdth' 100; }
+.price .was { color: var(--muted); font-size: .8em; }
+
+/* ---------- parts ---------- */
+.parts { padding: 3rem 0; border-top: 1px solid var(--line); }
+.parts-head { display: flex; align-items: center; justify-content: space-between; gap: 1rem; flex-wrap: wrap; margin-bottom: 1rem; }
+.parts-head .section-title { margin: 0; }
+.tools { display: flex; gap: .75rem; flex-wrap: wrap; }
+.tools input, .tools select {
+  min-height: 44px; padding: 0 .9rem; border-radius: 8px;
+  background: var(--panel); border: 1px solid var(--line);
+}
+.tools input { width: min(18rem, 70vw); }
+.tools input::placeholder { color: var(--muted); }
+
+.chips { display: flex; gap: .5rem; flex-wrap: wrap; margin-bottom: 1.75rem; }
+.chip {
+  display: inline-flex; align-items: center; gap: .45rem;
+  min-height: 38px; padding: 0 .85rem; border-radius: 999px; cursor: pointer;
+  background: transparent; border: 1px solid var(--line); font-size: var(--step--1);
+}
+.chip .count { color: var(--muted); font-variation-settings: 'wdth' 75; }
+.chip[aria-pressed="true"] { background: var(--text); color: var(--case); border-color: var(--text); }
+.chip[aria-pressed="true"] .count { color: inherit; opacity: .65; }
+
+.grid {
+  list-style: none; margin: 0; padding: 0;
+  display: grid; grid-template-columns: repeat(auto-fill, minmax(min(100%, 220px), 1fr)); gap: 2rem 1.25rem;
+}
+.tile-btn { all: unset; display: block; width: 100%; cursor: pointer; border-radius: 10px; }
+.tile-btn:focus-visible { outline: 2px solid var(--cyan); outline-offset: 4px; }
+.tile-photo { position: relative; aspect-ratio: 1; border-radius: 10px; overflow: hidden; background: var(--panel); }
+.tile-photo img { width: 100%; height: 100%; object-fit: cover; transition: transform .3s ease; }
+.tile-btn:hover .tile-photo img { transform: scale(1.03); }
+.tile .price { margin-top: .7rem; font-size: var(--step-1); }
+.tile-name { margin: .15rem 0 0; line-height: 1.3; }
+.tile-meta { margin: .2rem 0 0; color: var(--muted); font-size: var(--step--1); }
+.flag {
+  position: absolute; left: .6rem; top: .6rem; padding: .2rem .55rem; border-radius: 6px;
+  font-size: .78rem; font-weight: 700; color: var(--case);
+}
+.flag-new { background: var(--cyan); }
+.flag-drop { background: var(--amber); }
+.empty { color: var(--muted); padding: 2rem 0; }
+
+/* ---------- sold ---------- */
+.sold { padding: 3rem 0; border-top: 1px solid var(--line); }
+.sold-list { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(auto-fill, minmax(min(100%, 260px), 1fr)); gap: 1rem; }
+.sold-item { display: flex; gap: .9rem; align-items: center; opacity: .7; }
+.sold-item img { width: 64px; height: 64px; object-fit: cover; border-radius: 8px; filter: grayscale(1); }
+.sold-item .tile-name { margin: 0; }
+
+/* ---------- how ---------- */
+.how { padding: 3rem 0 4rem; border-top: 1px solid var(--line); }
+.steps {
+  margin: 0; padding: 0; list-style: none; counter-reset: step;
+  display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 260px), 1fr)); gap: 1.5rem 2.5rem;
+}
+.steps li { counter-increment: step; color: var(--muted); max-width: 40ch; }
+.steps li::before {
+  content: counter(step); display: block; margin-bottom: .5rem;
+  font-size: var(--step-2); font-weight: 800; color: var(--text); font-variation-settings: 'wdth' 112;
+}
+.steps strong { display: block; color: var(--text); margin-bottom: .2rem; }
+
+/* ---------- footer ---------- */
+.foot { max-width: var(--max); margin: 0 auto; padding: 2rem var(--gutter) 3rem; color: var(--muted); font-size: var(--step--1); border-top: 1px solid var(--line); }
+.foot p { margin: .25rem 0; }
+
+/* ---------- detail dialog ---------- */
+.detail {
+  width: min(1000px, calc(100vw - 2rem)); max-height: calc(100vh - 2rem); padding: 0;
+  border: 1px solid var(--line); border-radius: 14px; background: var(--case); color: var(--text);
+}
+.detail::backdrop { background: rgba(8, 9, 14, .72); }
+.detail[open] { animation: open .18s ease-out; }
+@keyframes open { from { opacity: 0; transform: translateY(8px); } }
+.detail-inner { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); }
+.close {
+  position: absolute; right: .75rem; top: .75rem; z-index: 2; width: 44px; height: 44px;
+  display: grid; place-items: center; border-radius: 999px; border: 0; cursor: pointer;
+  background: rgba(25, 27, 36, .8); color: var(--text);
+}
+.gallery { background: #000; display: grid; grid-template-rows: 1fr auto; }
+.gallery > img { width: 100%; height: 100%; max-height: 70vh; object-fit: contain; }
+.thumbs { display: flex; gap: .4rem; padding: .5rem; background: var(--case); }
+.thumbs button { all: unset; cursor: pointer; border-radius: 6px; outline: 2px solid transparent; outline-offset: 1px; }
+.thumbs button[aria-current="true"] { outline-color: var(--text); }
+.thumbs button:focus-visible { outline-color: var(--cyan); }
+.thumbs img { width: 56px; height: 56px; object-fit: cover; border-radius: 6px; }
+.detail-body { padding: 2rem; overflow: auto; max-height: calc(100vh - 2rem); }
+.detail-cat { margin: 0; color: var(--muted); font-size: var(--step--1); }
+.detail-body h2 { margin: .3rem 0 .6rem; font-size: var(--step-2); line-height: 1.1; font-variation-settings: 'wdth' 108; letter-spacing: -0.015em; padding-right: 2.5rem; }
+.detail-body .price { font-size: var(--step-2); }
+.detail-body .condition { margin: .2rem 0 1.25rem; color: var(--muted); }
+.desc p { margin: 0 0 .5rem; max-width: 60ch; }
+.desc { margin-bottom: 1.5rem; }
+
+/* ---------- small screens ---------- */
+@media (max-width: 800px) {
+  .build { grid-template-columns: 1fr; }
+  .build::before { inset: 0 10% auto 10%; width: auto; height: 55%; }
+  .build-photo { max-width: 420px; }
+  .detail-inner { grid-template-columns: 1fr; }
+  .gallery > img { max-height: 50vh; }
+  .detail-body { max-height: none; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation: none !important; transition: none !important; }
+}

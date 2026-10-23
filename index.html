@@ -3,9 +3,102 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Hello World</title>
+  <title>Osmel Martinez | Gaming PCs and parts in Jacksonville</title>
+  <meta name="description" content="Gaming PCs, processors, graphics cards, memory and more from Osmel Martinez in Jacksonville, FL. Test before you pay.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,300..900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-  <h1>Hello, World!</h1>
+  <a class="skip" href="#parts">Skip to parts</a>
+
+  <header class="top">
+    <a class="brand" href="./">
+      <span class="brand-name">Osmel Martinez</span>
+      <span class="brand-sub">PCs and parts, Jacksonville FL</span>
+    </a>
+    <div class="top-right">
+      <p class="rating" id="rating"></p>
+      <a class="btn btn-quiet" id="profile-link" href="#" target="_blank" rel="noopener">See all on Facebook</a>
+    </div>
+  </header>
+
+  <main>
+    <section class="intro">
+      <h1>Gaming PCs and parts you can test before you pay.</h1>
+      <p class="lede">Everything here is listed on Facebook Marketplace and ready for pickup in Jacksonville. Message Osmel about an item, meet up, and try it out first.</p>
+    </section>
+
+    <section class="builds" aria-labelledby="builds-title">
+      <h2 id="builds-title" class="section-title">Complete builds</h2>
+      <div class="build-list" id="builds"></div>
+    </section>
+
+    <section class="parts" id="parts" aria-labelledby="parts-title">
+      <div class="parts-head">
+        <h2 id="parts-title" class="section-title">Parts</h2>
+        <div class="tools">
+          <label class="search">
+            <span class="sr-only">Search parts</span>
+            <input type="search" id="q" placeholder="Search, e.g. ddr5 or ryzen" autocomplete="off">
+          </label>
+          <label class="sort">
+            <span class="sr-only">Sort parts</span>
+            <select id="sort">
+              <option value="new">Newest first</option>
+              <option value="low">Price, low to high</option>
+              <option value="high">Price, high to low</option>
+            </select>
+          </label>
+        </div>
+      </div>
+      <div class="chips" id="chips" role="group" aria-label="Filter by category"></div>
+      <ul class="grid" id="grid"></ul>
+      <p class="empty" id="empty" hidden>Nothing matches that search. Try a different word or pick All.</p>
+    </section>
+
+    <section class="sold" id="sold-section" aria-labelledby="sold-title" hidden>
+      <h2 id="sold-title" class="section-title">Recently sold</h2>
+      <ul class="sold-list" id="sold"></ul>
+    </section>
+
+    <section class="how" aria-labelledby="how-title">
+      <h2 id="how-title" class="section-title">How buying works</h2>
+      <ol class="steps">
+        <li><strong>Message Osmel on Facebook.</strong> Every item links to its Marketplace listing, where you can ask if it's still available.</li>
+        <li><strong>Meet in Jacksonville.</strong> Pickup is local. Osmel will share the meeting spot in Messenger.</li>
+        <li><strong>Test it, then pay.</strong> Parts can be tested before you hand over any money.</li>
+      </ol>
+    </section>
+  </main>
+
+  <footer class="foot">
+    <p id="updated"></p>
+    <p>Demo site. Listings are copied from Osmel's Facebook Marketplace profile.</p>
+  </footer>
+
+  <dialog class="detail" id="detail" aria-labelledby="detail-title">
+    <div class="detail-inner">
+      <button class="close" id="detail-close" aria-label="Close">
+        <svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+      </button>
+      <div class="gallery">
+        <img id="detail-img" alt="">
+        <div class="thumbs" id="detail-thumbs"></div>
+      </div>
+      <div class="detail-body">
+        <p class="detail-cat" id="detail-cat"></p>
+        <h2 id="detail-title"></h2>
+        <p class="price" id="detail-price"></p>
+        <p class="condition" id="detail-condition"></p>
+        <div class="desc" id="detail-desc"></div>
+        <a class="btn btn-main" id="detail-link" href="#" target="_blank" rel="noopener">Message Osmel on Facebook</a>
+      </div>
+    </div>
+  </dialog>
+
+  <script src="data/listings.js"></script>
+  <script src="app.js"></script>
 </body>
 </html>
